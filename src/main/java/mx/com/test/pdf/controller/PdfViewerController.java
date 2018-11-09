@@ -38,7 +38,6 @@ public class PdfViewerController {
 	    //para descargarse
 	    //headers.add("Content-Disposition", "attachment; filename=" + "example.pdf");
 
-	    headers.setContentDispositionFormData(archivoPdf, archivoPdf);
 	    headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
 	    ResponseEntity<byte[]> response = null;
 		try {
@@ -49,11 +48,5 @@ public class PdfViewerController {
 		}
 	    return response;
 	}
-	
-	/*@RequestMapping(value = "asPdf", method = RequestMethod.GET)
-	public String getViewAsPdf(Model model) {
-	    // put stuff in your model
-	    return "pdfView";
-	}*/
 
 }
