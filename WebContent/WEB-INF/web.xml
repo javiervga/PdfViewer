@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.0" 
+xmlns="http://java.sun.com/xml/ns/javaee" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+<display-name>PdfViewer</display-name>
+
+<servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>
+    		org.springframework.web.servlet.DispatcherServlet
+    </servlet-class>
+    <init-param>
+        <param-name>contextConfigLocation</param-name>
+         <param-value>/WEB-INF/spring.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+</servlet-mapping>
+<welcome-file-list>
+	<welcome-file>/pages/welcome.jsp</welcome-file>
+</welcome-file-list>
+
+
+<security-constraint>
+    <web-resource-collection>
+        <web-resource-name>WSPOST</web-resource-name>
+        <url-pattern>/protected/*</url-pattern>
+        <http-method>GET</http-method>
+  		<http-method>POST</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+        <description/>
+        <role-name>UsrAdmin</role-name>
+        <role-name>UsrEditor</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+    	<transport-guarantee>NONE</transport-guarantee>
+	</user-data-constraint>
+</security-constraint>
+
+<login-config>
+  	<auth-method>FORM</auth-method>
+  	<realm-name>myrealm</realm-name>
+  	<form-login-config>
+   		<form-login-page>/pages/login.jsp</form-login-page>
+   		<form-error-page>/pages/error.jsp</form-error-page>
+  	</form-login-config>
+</login-config>
+ <security-role>
+  <role-name>UsrAdmin</role-name>
+ </security-role>
+ <security-role>
+  <role-name>UsrEditor</role-name>
+ </security-role> 
+
+    
+</web-app>    
